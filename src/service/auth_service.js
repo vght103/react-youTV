@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import firebase from "firebase";
 import firebaseApp from "./firebase";
 
 // 사용자가 로그인/로그아웃 하는 것만 관리
