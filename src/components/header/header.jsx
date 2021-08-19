@@ -5,10 +5,14 @@ const Header = ({ onLogout }) => (
   <header className={styles.header}>
     {onLogout && (
       <button className={styles.logout} onClick={onLogout}>
-        Logout
+        로그아웃
       </button>
     )}
-    <img src="/images/logo.png" alt="logo" className={styles.logo} />
+    <img
+      src={process.env.PUBLIC_URL + "/images/logo.png"}
+      alt="logo"
+      className={styles.logo}
+    />
     <h1 className={styles.title}>Business Card Maker</h1>
   </header>
 );
