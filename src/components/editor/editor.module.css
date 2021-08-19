@@ -1,0 +1,11 @@
+.editor {
+  flex-basis: 50%;
+  background-color: darksalmon;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  color: rgb(65, 90, 65);
+  margin-bottom: 1em;
+}

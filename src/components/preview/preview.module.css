@@ -1,0 +1,13 @@
+/* @value makeGreen from "../../common/color.css"; */
+
+.preview {
+  flex-basis: 50%;
+  background-color: antiquewhite;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  color: rgb(65, 90, 65);
+  margin-bottom: 1em;
+}
