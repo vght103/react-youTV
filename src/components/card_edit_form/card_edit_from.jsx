@@ -17,7 +17,7 @@ const CardEditFrom = ({ card }) => {
 
       <select className={styles.select} name="theme" value={theme}>
         <option value="light">Light</option>
-        <option value="dard">Dark</option>
+        <option value="dark">Dark</option>
         <option value="colorful">Colorful</option>
       </select>
 
@@ -32,7 +32,6 @@ const CardEditFrom = ({ card }) => {
       <div className={styles.fileInput}>
         <ImgFileInput />
       </div>
-
       <Button name="Delete" onClick={onSubmit} />
     </form>
   );

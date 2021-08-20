@@ -8,8 +8,6 @@ const Card = ({ card }) => {
   const { name, company, theme, title, email, message, fileName, fileURL } =
     card;
 
-  console.log(email);
-
   const url = fileURL || DEFAULT_IMAGE;
   return (
     <li className={`${styles.card_list} ${getStyles(theme)}`}>
