@@ -12,6 +12,7 @@ class AuthService {
     //  구글을 받아온 providerName 으로 넣어주면 꼭 구글이 아니더라도 다 가능
 
     return firebaseApp.auth().signInWithPopup(authProvider);
+    // 과연?
   }
 
   // 로그아웃 함수
