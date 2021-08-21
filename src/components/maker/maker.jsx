@@ -8,9 +8,8 @@ import styles from "./maker.module.css";
 
 // 로그아웃을 하기위해 authService 를 받아온다.
 const Maker = ({ authService }) => {
-  const [cards, setCards] = useState([
-    // 명함카드 데이터들
-    {
+  const [cards, setCards] = useState({
+    1: {
       id: "1",
       name: "Sean",
       company: "Naver",
@@ -22,7 +21,7 @@ const Maker = ({ authService }) => {
       fileURL: null,
     },
 
-    {
+    2: {
       id: "2",
       name: "Lowell",
       company: "Kakao",
@@ -34,7 +33,7 @@ const Maker = ({ authService }) => {
       fileURL: null,
     },
 
-    {
+    3: {
       id: "3",
       name: "Paul",
       company: "Coupang",
@@ -45,7 +44,7 @@ const Maker = ({ authService }) => {
       fileNAme: "paul",
       fileURL: "paul.png",
     },
-  ]);
+  });
 
   const history = useHistory();
 
@@ -62,17 +61,32 @@ const Maker = ({ authService }) => {
     });
   });
 
-  const addNewCard = (newCard) => {
-    const updatedCard = [...cards, newCard];
-    setCards(updatedCard);
-    console.log(newCard);
+  // 카드 추가
+
+  // 카드 업데이트
+  const createOrUpdateCard = (card) => {
+    const updated = { ...cards };
+    updated[card.id] = card;
+    setCards(updated);
+  };
+
+  const deleteCard = (card) => {
+    const updated = { ...cards };
+    updated[card.id] = card;
+    delete updated[card.id];
+    setCards(updated);
   };
 
   return (
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <Editor cards={cards} onAddCard={addNewCard} />
+        <Editor
+          cards={cards}
+          addCard={createOrUpdateCard}
+          updateCard={createOrUpdateCard}
+          deleteCard={deleteCard}
+        />
         <Preview cards={cards} />
       </div>
       <Footer />

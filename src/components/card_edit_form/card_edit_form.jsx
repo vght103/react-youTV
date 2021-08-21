@@ -3,11 +3,12 @@ import Button from "../button/button";
 import ImgFileInput from "../img_file_input/img_file_input";
 import styles from "./card_edit_form.module.css";
 
-const CardEditForm = ({ card }) => {
+const CardEditForm = ({ card, updateCard, deleteCard }) => {
   const { name, company, theme, title, email, message, fileName, fileURL } =
     card;
 
-  // 각 내용들이 바뀌면 함수가 호출되도록 onChange 를 한다.
+  // 각 input의 내용들이 바뀌면 preview 내용이 바뀌도록  onChange 를 한다.
+  // 카드가 업데이트 변경되거나, 삭제되는 것의 prop을 받아와서 실행한다.
   const nameRef = useRef();
   const companyRef = useRef();
   const themeRef = useRef();
@@ -20,14 +21,29 @@ const CardEditForm = ({ card }) => {
       return;
     }
     event.preventDefault();
+
+    updateCard({
+      ...card,
+      [event.currentTarget.name]: event.currentTarget.value,
+      // 프롭으로 카드를 복사해와서, 카드의 name 을 key로, 카드의 value 를 value로 사용
+      // 변수의 속성으로 key 를 사용할 때는, [] 를 사용해야한다
+    });
   };
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    deleteCard(card);
+  };
 
   return (
     // input의 value 는 card 에서 정보를 받아온다.
     <form className={styles.form}>
-      <input ref={nameRef} className={styles.input} name="name" value={name} />
+      <input
+        onChange={onChange}
+        ref={nameRef}
+        className={styles.input}
+        name="name"
+        value={name}
+      />
       <input
         onChange={onChange}
         ref={companyRef}
