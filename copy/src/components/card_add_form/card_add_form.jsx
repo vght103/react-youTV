@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Button from "../button/button";
 import ImgFileInput from "../img_file_input/img_file_input";
 import styles from "./card_add_form.module.css";
 
 // CardAddForm에 onSubmit 콜백함수를 프롭으로 받아와서 함수 실행할거다.
-const CardAddForm = ({ FileInput, onAddCard }) => {
+const CardAddForm = ({ onAddCard }) => {
   //  Add 를 해서 서밋됐을 때 각 인풋에 있는 데이터를 읽어오기 위해 ref 지정
 
   const formRef = useRef();
@@ -14,16 +14,6 @@ const CardAddForm = ({ FileInput, onAddCard }) => {
   const titleeRef = useRef();
   const emailRef = useRef();
   const messageRef = useRef();
-
-  const [file, setFile] = useState({ fileName: null, fileURL: null });
-
-  const onFileChange = (file) => {
-    console.log(file);
-    setFile({
-      fileName: file.name,
-      fileURL: file.url,
-    });
-  };
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -35,15 +25,14 @@ const CardAddForm = ({ FileInput, onAddCard }) => {
       titlee: titleeRef.current.value || "",
       email: emailRef.current.value || "",
       message: messageRef.current.value || "",
-      fileName: file.fileName || "없음",
-      fileURL: file.fileURL || "없음",
+      fileName: "",
+      fileUrl: "",
     };
 
     // 사용자가 서밋하고 나면 form 으로 리셋한다.
     formRef.current.reset();
-    // card add 하고 초기화
-    setFile({ fileName: null, fileURL: null });
     onAddCard(newCard);
+    console.log(newCard);
   };
 
   return (
@@ -93,7 +82,7 @@ const CardAddForm = ({ FileInput, onAddCard }) => {
         placeholder="Message"
       ></textarea>
       <div className={styles.fileInput}>
-        <FileInput name={file.fileName} onFileChange={onFileChange} />
+        <ImgFileInput />
       </div>
       <Button name="Add" onClick={onSubmit} />
     </form>

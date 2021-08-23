@@ -6,9 +6,4 @@
   padding: 0.5em;
   cursor: pointer;
   flex: 1 1 50%;
-  border: none;
-}
-
-.button:hover {
-  opacity: 0.8;
 }

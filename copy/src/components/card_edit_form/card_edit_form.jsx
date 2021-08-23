@@ -1,12 +1,14 @@
 import React, { useRef } from "react";
 import Button from "../button/button";
+import ImgFileInput from "../img_file_input/img_file_input";
 import styles from "./card_edit_form.module.css";
 
-const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
+const CardEditForm = ({ card, updateCard, deleteCard }) => {
   const { name, company, theme, title, email, message, fileName, fileURL } =
     card;
 
-  // 각 input의 내용들이 바뀌면 함수가 호출되도록 onChange 를 한다.
+  // 각 input의 내용들이 바뀌면 preview 내용이 바뀌도록  onChange 를 한다.
+  // 카드가 업데이트 변경되거나, 삭제되는 것의 prop을 받아와서 실행한다.
   const nameRef = useRef();
   const companyRef = useRef();
   const themeRef = useRef();
@@ -14,24 +16,17 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
   const emailRef = useRef();
   const messageRef = useRef();
 
-  const onFileChange = (file) => {
-    updateCard({
-      ...card,
-      fileName: file.name,
-      fileURL: file.url,
-    });
-  };
-
   const onChange = (event) => {
     if (event.currentTarget == null) {
       return;
     }
     event.preventDefault();
 
-    // 기존의 카드의 키와 밸류를 가져다 쓰면서
     updateCard({
       ...card,
       [event.currentTarget.name]: event.currentTarget.value,
+      // 프롭으로 카드를 복사해와서, 카드의 name 을 key로, 카드의 value 를 value로 사용
+      // 변수의 속성으로 key 를 사용할 때는, [] 를 사용해야한다
     });
   };
 
@@ -92,7 +87,7 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         value={message}
       ></textarearef>
       <div className={styles.fileInput}>
-        <FileInput name={fileName} onFileChange={onFileChange} />
+        <ImgFileInput />
       </div>
       <Button name="Delete" onClick={onSubmit} />
     </form>
