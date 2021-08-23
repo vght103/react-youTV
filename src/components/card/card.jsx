@@ -5,13 +5,12 @@ const DEFAULT_IMAGE = process.env.PUBLIC_URL + "/images/default_logo.png";
 
 const Card = ({ card }) => {
   // 다중 변수 할당가능
-  const { name, company, theme, title, email, message, fileName, fileURL } =
-    card;
+  const { name, company, theme, title, email, message, fileURL } = card;
 
   const url = fileURL || DEFAULT_IMAGE;
   return (
     <li className={`${styles.card_list} ${getStyles(theme)}`}>
-      <img src={url} alt="profile photo" className={styles.photo} />
+      <img src={url} alt="profile" className={styles.photo} />
       <div className={styles.info}>
         <h2 className={styles.name}>{name}</h2>
         <p className={styles.company}>{company}</p>

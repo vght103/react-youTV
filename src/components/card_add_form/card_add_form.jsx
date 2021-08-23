@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Button from "../button/button";
-import ImgFileInput from "../img_file_input/img_file_input";
+// import ImgFileInput from "../img_file_input/img_file_input";
 import styles from "./card_add_form.module.css";
 
 // CardAddForm에 onSubmit 콜백함수를 프롭으로 받아와서 함수 실행할거다.

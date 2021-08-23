@@ -36,7 +36,7 @@ const Maker = ({ authService, FileInput, cardRepository }) => {
       setCards(cards);
     });
     return () => stopSync();
-  }, [userId]);
+  }, [userId, cardRepository]);
 
   useEffect(() => {
     // 로그인 관련 useEffect
@@ -50,7 +50,7 @@ const Maker = ({ authService, FileInput, cardRepository }) => {
         history.push("/");
       }
     });
-  });
+  }, [authService, history]);
 
   // firebase 데이터 이용한 것
   const addOrUpdateCard = (card) => {

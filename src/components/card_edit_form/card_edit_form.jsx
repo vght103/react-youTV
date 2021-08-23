@@ -3,8 +3,7 @@ import Button from "../button/button";
 import styles from "./card_edit_form.module.css";
 
 const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
-  const { name, company, theme, title, email, message, fileName, fileURL } =
-    card;
+  const { name, company, theme, title, email, message, fileName } = card;
 
   // 각 input의 내용들이 바뀌면 함수가 호출되도록 onChange 를 한다.
   const nameRef = useRef();
@@ -84,13 +83,13 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
         value={email}
       />
 
-      <textarearef
+      <textarea
         onChange={onChange}
         ref={messageRef}
         className={styles.textarea}
         name="message"
         value={message}
-      ></textarearef>
+      ></textarea>
       <div className={styles.fileInput}>
         <FileInput name={fileName} onFileChange={onFileChange} />
       </div>
